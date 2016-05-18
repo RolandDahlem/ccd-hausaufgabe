@@ -15,10 +15,7 @@ class Minenfeld {
 	}
 
 	static char[][] erzeugeMinenfeld(String minenfeld_raw) {
-		System.out.println("erzeuge Minenfeld: '" + minenfeld_raw + "'");
-		
 		int spaltenanzahl = minenfeld_raw.indexOf("\n");
-		
 		char[][] minenfeld = new char[spaltenanzahl][spaltenanzahl];
 		
 		StringTokenizer tokenizer = new StringTokenizer(minenfeld_raw, "\n");

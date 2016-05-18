@@ -22,8 +22,11 @@ public class MinesweeperController {
 	}
 
 	@RequestMapping(value = "/minesweeper_loesen", method = RequestMethod.GET)
-	public String umbrechen(ModelMap model, @RequestParam("minenfeld") String minenfeld) {
+	public String umbrechen(ModelMap model, @RequestParam("minenfeld") String minenfeld_raw) {
 		
+		model.addAttribute("minenfeld", minenfeld_raw);
+		
+		String minenfeld = minenfeld_raw.replace("\r\n", "\n");
 		String mogelzettel = service.erzeugeMogelzettel(minenfeld);
 		model.addAttribute("mogelzettel", mogelzettel);
 

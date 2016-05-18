@@ -15,7 +15,7 @@ public class MinesweeperServiceTest {
 		String minenfeld =
 				".*.\n" +
 				"...\n" +
-				"...\n";
+				"...";
 
 		String mogelzettel_soll =
 				"1*1\n" +
