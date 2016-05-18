@@ -1,9 +1,8 @@
 package de.ods.ccd.minesweeper;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class MinesweeperServiceTest {
@@ -11,7 +10,6 @@ public class MinesweeperServiceTest {
 	MinesweeperService service = new MinesweeperService();
 
 	@Test
-	@Ignore
 	public void test_ob_mogelzettel_erstellt_wird() {
 
 		String minenfeld =

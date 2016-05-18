@@ -9,7 +9,6 @@ import org.junit.Test;
 public class MinenfeldTest {
 
 	@Test
-	@Ignore
 	public void test_ob_mogelzettel_erstellt_wird() {
 
 		String minenfeld_raw =
