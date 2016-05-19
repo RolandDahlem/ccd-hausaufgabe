@@ -1,6 +1,5 @@
 package de.ods.ccd;
 
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -9,12 +8,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(inheritLocations = true, locations = { "/WEB-INF/CCDWeb-servlet.xml" })
 public class AbstractSpringIntegrationTest {
 
-	@Test
-	public void testNamenskonvention() {
-		String clazzName = this.getClass().getSimpleName();
-		if (clazzName.endsWith("IntegrationTest") == false) {
-			throw new RuntimeException("Der IntegrationTest " + clazzName + " gibt sich als Unit-Test aus. Bitte umbenennen");
-		}
-	}
+//	@Test
+//	public void testNamenskonvention() {
+//		String clazzName = this.getClass().getSimpleName();
+//		if (clazzName.endsWith("IntegrationTest") == false) {
+//			throw new RuntimeException("Der IntegrationTest " + clazzName + " gibt sich als Unit-Test aus. Bitte umbenennen");
+//		}
+//	}
 
 }

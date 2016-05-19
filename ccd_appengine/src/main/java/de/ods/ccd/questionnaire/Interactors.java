@@ -12,19 +12,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import de.ods.ccd.questionnaire.domain.Aufgabe;
 
 @Controller
-public class QuestionnaireController {
+public class Interactors {
 	
 	@Autowired
-	QuestionnaireService service;
+	private FragebogenProvider fragebogenProvider;
+	
+	@Autowired
+	private AufgabenFactory aufgabenFactory;
 	
 	@RequestMapping(value = "/questionnaire_input", method = RequestMethod.GET)
-	public String zeigeTextumbruchInputFelder(ModelMap model) throws IOException {
+	public String zeigeLeerenFragebogen(ModelMap model) throws IOException {
 
-		List<Aufgabe> aufgaben = service.start();
-		
+		List<Aufgabe> aufgaben = start();
 		model.addAttribute("aufgaben", aufgaben);
-
 		return "questionnaire_input";
 	}
-		
+
+	List<Aufgabe> start() throws IOException {
+		List<String> zeilen = fragebogenProvider.leseFragebogenDatei();
+		List<Aufgabe> aufgaben = aufgabenFactory.erstelleAufgaben(zeilen);
+		aufgaben = aufgabenFactory.ergeanzeWeissNicht(aufgaben);
+		return aufgaben;
+	}
+			
 }

@@ -1,37 +1,23 @@
 package de.ods.ccd.questionnaire;
 
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 import de.ods.ccd.questionnaire.domain.Aufgabe;
 
 @Service
-public class QuestionnaireService {
+public class AufgabenFactory {
 
-	@Value("classpath:questionnaire.txt")
-	private Resource inputfile;
-
-	List<Aufgabe> start() throws IOException {
-		List<String> zeilen = Files.readAllLines(inputfile.getFile().toPath(), Charset.forName("UTF-8"));
-		List<Aufgabe> aufgaben = erstelleAufgaben(zeilen);
-		return ergeanzeWeissNicht(aufgaben);
-	}
-
-	private List<Aufgabe> ergeanzeWeissNicht(List<Aufgabe> aufgaben) {
+	List<Aufgabe> ergeanzeWeissNicht(List<Aufgabe> aufgaben) {
 		for (Aufgabe aufgabe : aufgaben) {
 			aufgabe.ergaenzeAntwortmoeglichkeit("Weiß nicht");
 		}
 		return aufgaben;
 	}
 
-	private List<Aufgabe> erstelleAufgaben(List<String> zeilen) {
+	List<Aufgabe> erstelleAufgaben(List<String> zeilen) {
 		List<Aufgabe> parseAufgaben = parseAufgaben(zeilen);
 		
 		return parseAufgaben;
