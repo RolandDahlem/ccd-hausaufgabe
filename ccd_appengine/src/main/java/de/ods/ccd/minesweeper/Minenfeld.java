@@ -7,8 +7,7 @@ class Minenfeld {
 	static final char KEINE_MINE = '.';
 	static final char MINE_VORHANDEN = '*';
 	
-	char[][] minenfeld;
-
+	final char[][] minenfeld;
 
 	public Minenfeld(String minenfeld_raw) {
 		this.minenfeld = erzeugeMinenfeld(minenfeld_raw);		
