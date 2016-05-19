@@ -37,8 +37,8 @@ public class AufgabenFactory {
 				
 				aktuelleAufgabe.setFrage(fragezeichenAnsEndeSetzen(zeile));
 			} else if (zeile.startsWith("*")) {
-				aktuelleAufgabe.setRichtigeAntwort(zeilennummer);
-				aktuelleAufgabe.ergaenzeAntwortmoeglichkeit(zeile);
+				aktuelleAufgabe.setRichtigeAntwortIndex(zeilennummer -1);
+				aktuelleAufgabe.ergaenzeAntwortmoeglichkeit(zeile.substring(1));
 			} else {
 				aktuelleAufgabe.ergaenzeAntwortmoeglichkeit(zeile);
 			}
