@@ -6,7 +6,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(inheritLocations = true, locations = { "/WEB-INF/CCDWeb-servlet.xml" })
-public class AbstractSpringIntegrationTest {
+public abstract class AbstractSpringIntegrationTest {
 
 //	@Test
 //	public void testNamenskonvention() {
