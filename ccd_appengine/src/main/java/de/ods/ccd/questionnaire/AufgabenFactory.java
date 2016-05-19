@@ -18,41 +18,10 @@ public class AufgabenFactory {
 	}
 
 	List<Aufgabe> erstelleAufgaben(List<String> zeilen) {
-		List<Aufgabe> parseAufgaben = parseAufgaben(zeilen);
+		
+		List<Aufgabe> parseAufgaben = new AufgabenParser(zeilen).parse();
 		
 		return parseAufgaben;
-	}
-
-	private List<Aufgabe> parseAufgaben(List<String> zeilen) {
-		List<Aufgabe> aufgaben = new ArrayList<>();
-
-		Aufgabe aktuelleAufgabe = null;
-		for (int zeilennummer = 0; zeilennummer < zeilen.size(); zeilennummer++) {
-			String zeile = zeilen.get(zeilennummer);
-			if (zeile.startsWith("?")) {
-				if(aktuelleAufgabe != null){
-					aufgaben.add(aktuelleAufgabe);
-				}
-				aktuelleAufgabe = new Aufgabe();
-				
-				aktuelleAufgabe.setFrage(fragezeichenAnsEndeSetzen(zeile));
-			} else if (zeile.startsWith("*")) {
-				aktuelleAufgabe.setRichtigeAntwortIndex(zeilennummer -1);
-				aktuelleAufgabe.ergaenzeAntwortmoeglichkeit(zeile.substring(1));
-			} else {
-				aktuelleAufgabe.ergaenzeAntwortmoeglichkeit(zeile);
-			}
-		}
-
-		if(aktuelleAufgabe != null){
-			aufgaben.add(aktuelleAufgabe);
-		}
-		
-		return aufgaben;
-	}
-
-	private String fragezeichenAnsEndeSetzen(String zeile) {
-		return zeile.substring(1) + "?";
 	}
 
 }
