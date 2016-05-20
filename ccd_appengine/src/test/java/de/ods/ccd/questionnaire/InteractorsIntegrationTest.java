@@ -17,18 +17,18 @@ import de.ods.ccd.questionnaire.domain.Aufgabe;
 public class InteractorsIntegrationTest extends AbstractSpringIntegrationTest{
 
 	@Autowired
-	private Interactors service;
+	private Interactors interactors;
 	
 	@Test
 	public void test_ob_die_vorgabe_datei_eingelesen_wird() throws Exception {
-		List<Aufgabe> aufgaben = service.start();
+		List<Aufgabe> aufgaben = interactors.start();
 
 		assertThat(aufgaben.size(), is(2));
 	}
 
 	@Test
 	public void test_ob_die_format_eigenheiten_ausgebuegelt_werden() throws Exception {
-		Aufgabe ersteAufgabe = service.start().get(0);
+		Aufgabe ersteAufgabe = interactors.start().get(0);
 
 		assertThat(ersteAufgabe.getFrage(), endsWith("?"));
 		assertThat(ersteAufgabe.getRichtigeAntwort(), is("Cat"));
@@ -36,7 +36,7 @@ public class InteractorsIntegrationTest extends AbstractSpringIntegrationTest{
 	
 	@Test
 	public void test_ob_weiss_nicht_vorhanden_ist() throws Exception {
-		List<Aufgabe> aufgaben = service.start();
+		List<Aufgabe> aufgaben = interactors.start();
 
 		String letzteAntortMoeglichkeit = aufgaben.get(0).getAntwortmoeglichkeiten().get(aufgaben.get(0).getAntwortmoeglichkeiten().size()-1);
 		assertThat(letzteAntortMoeglichkeit, is("Weiß nicht"));
