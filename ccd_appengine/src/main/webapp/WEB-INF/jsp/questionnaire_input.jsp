@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
 <title>Questionnaire</title>
@@ -7,13 +9,17 @@
 
 	<h2>Fragebogen</h2>
 
-	<form action="questionnaire_absenden" id="uform">
-	  Verzeichnispfad: <input type="text" style="width: 600px" name="verzeichnispfad" value="${verzeichnispfad}"> <br/>
-	  Suchwort: <input type="text" style="width: 600px" name="suchwort" value="${suchwort}"><br/>
-	  <input type="submit">
-	</form>
-
-	<textarea name="suchergebnis" form="uform" style="width: 600px; height: 150px;">${suchergebnis}</textarea> 
+	<form:form modelAttribute="fragebogen" action="questionnaire_absenden" id="uform" >
 	
+		<c:forEach items="${fragebogen.aufgaben}" var="aufgabe" varStatus="aufgabenindex" >
+			<form:label path="aufgaben[${aufgabenindex.index}].nutzerantwortIndex">${aufgabe.frage} :</form:label>
+			<form:radiobuttons path="aufgaben[${aufgabenindex.index}].nutzerantwortIndex" items="${aufgabe.antwortmoeglichkeiten}"  /> 
+		    </br>
+		</c:forEach>
+
+ 		</br>
+		<input type="submit" value="Show my score...">
+	</form:form>
+
 </body>
 </html>

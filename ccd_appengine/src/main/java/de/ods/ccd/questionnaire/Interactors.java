@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import de.ods.ccd.questionnaire.domain.Aufgabe;
+import de.ods.ccd.questionnaire.domain.Fragebogen;
 
 @Controller
 public class Interactors {
@@ -24,7 +25,11 @@ public class Interactors {
 	public String zeigeLeerenFragebogen(ModelMap model) throws IOException {
 
 		List<Aufgabe> aufgaben = start();
-		model.addAttribute("aufgaben", aufgaben);
+		
+		Fragebogen fragebogen = new Fragebogen();
+		fragebogen.setAufgaben(aufgaben);
+		
+		model.addAttribute("fragebogen", fragebogen);
 		return "questionnaire_input";
 	}
 

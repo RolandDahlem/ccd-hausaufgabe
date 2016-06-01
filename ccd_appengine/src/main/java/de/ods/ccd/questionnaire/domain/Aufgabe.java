@@ -47,4 +47,8 @@ public class Aufgabe {
 		return antwortmoeglichkeiten.get(getRichtigeAntwortIndex());
 	}
 
+	@Override
+	public String toString() {
+		return frage;
+	}
 }
