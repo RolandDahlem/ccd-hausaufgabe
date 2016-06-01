@@ -8,9 +8,9 @@ check_errs() {
 }
 
 echo "building project..."
-mvn clean install
+mvn clean install $1
 check_errs $? "errors in project"
 
 echo "deploy..."
-mvn appengine:update
+mvn appengine:update $1
 check_errs $? "error in deployment"
