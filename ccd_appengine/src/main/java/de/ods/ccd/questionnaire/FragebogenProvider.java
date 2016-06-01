@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class FragebogenProvider {
 
-	@Value("classpath:questionnaire.txt")
+	@Value("classpath:/WEB-INF/questionnaire.txt")
 	private Resource inputfile;
 
 	public List<String> leseFragebogenDatei() throws IOException {

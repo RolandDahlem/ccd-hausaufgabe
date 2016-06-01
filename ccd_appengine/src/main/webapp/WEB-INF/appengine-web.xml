@@ -14,4 +14,8 @@
 		<service>mail_bounce</service>
 	</inbound-services>
 
+	<resource-files>
+		<include path="/**.txt" />
+	</resource-files>
+
 </appengine-web-app>
