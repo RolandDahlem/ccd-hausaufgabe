@@ -28,4 +28,15 @@ public class Fragebogen {
 		}
 
 	}
+
+	public boolean isVollstaendig() {
+		for (Aufgabe aufgabe : aufgaben) {
+			if(aufgabe.getNutzerantwort().isEmpty()){
+				return false;
+			}
+		}
+		return true;
+	}
+
+
 }

@@ -39,7 +39,11 @@ public class Interactors {
 
     	model.addAttribute("fragebogen", fragebogen);
     	
-    	return "questionnaire_input";
+    	if(fragebogen.isVollstaendig()){
+    		return "questionnaire_result";
+    	} else {
+    		return "questionnaire_input";
+    	}
     }
 
     
