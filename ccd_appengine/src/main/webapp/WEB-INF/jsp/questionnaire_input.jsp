@@ -9,11 +9,11 @@
 
 	<h2>Fragebogen</h2>
 
-	<form:form modelAttribute="fragebogen" action="questionnaire_absenden" id="uform" >
+	<form:form modelAttribute="fragebogen" action="questionnaire_submit" id="fragebogen" method="GET" >
 	
 		<c:forEach items="${fragebogen.aufgaben}" var="aufgabe" varStatus="aufgabenindex" >
-			<form:label path="aufgaben[${aufgabenindex.index}].nutzerantwortIndex">${aufgabe.frage} :</form:label>
-			<form:radiobuttons path="aufgaben[${aufgabenindex.index}].nutzerantwortIndex" items="${aufgabe.antwortmoeglichkeiten}"  /> 
+			<form:label path="aufgaben[${aufgabenindex.index}].nutzerantwort">${aufgabe.frage} :</form:label>
+			<form:radiobuttons path="aufgaben[${aufgabenindex.index}].nutzerantwort" items="${aufgabe.antwortmoeglichkeiten}"  /> 
 		    </br>
 		</c:forEach>
 

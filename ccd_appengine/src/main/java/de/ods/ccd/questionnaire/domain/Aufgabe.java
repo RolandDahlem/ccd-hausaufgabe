@@ -7,8 +7,8 @@ public class Aufgabe {
 
 	private String frage;
 	private List<String> antwortmoeglichkeiten = new ArrayList<String>();
-	private int richtigeAntwortIndex = -1;
-	private int nutzerantwortIndex = -1;
+	private String richtigeAntwort = "";
+	private String nutzerantwort = "";
 	
 	public String getFrage() {
 		return frage;
@@ -23,28 +23,24 @@ public class Aufgabe {
 	}
 
 
-	public int getRichtigeAntwortIndex() {
-		return richtigeAntwortIndex;
+	public String getRichtigeAntwort() {
+		return richtigeAntwort;
 	}
 
-	public void setRichtigeAntwortIndex(int richtigeAntwort) {
-		this.richtigeAntwortIndex = richtigeAntwort;
+	public void setRichtigeAntwort(String richtigeAntwort) {
+		this.richtigeAntwort = richtigeAntwort;
 	}
 
-	public int getNutzerantwortIndex() {
-		return nutzerantwortIndex;
+	public String getNutzerantwort() {
+		return nutzerantwort;
 	}
 
-	public void setNutzerantwortIndex(int nutzerantwort) {
-		this.nutzerantwortIndex = nutzerantwort;
+	public void setNutzerantwort(String nutzerantwort) {
+		this.nutzerantwort = nutzerantwort;
 	}
 
 	public void ergaenzeAntwortmoeglichkeit(String zeile) {
 		antwortmoeglichkeiten.add(zeile);
-	}
-
-	public String getRichtigeAntwort() {
-		return antwortmoeglichkeiten.get(getRichtigeAntwortIndex());
 	}
 
 	@Override

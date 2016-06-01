@@ -31,7 +31,7 @@ class AufgabenParser {
 			wechsleAufgabe();
 			aktuelleAufgabe.setFrage(fragezeichenAnsEndeSetzen(zeile));
 		} else if (zeile.startsWith("*")) {
-			aktuelleAufgabe.setRichtigeAntwortIndex(zeilennummer -1);
+			aktuelleAufgabe.setRichtigeAntwort(zeile);
 			aktuelleAufgabe.ergaenzeAntwortmoeglichkeit(zeile.substring(1));
 		} else {
 			aktuelleAufgabe.ergaenzeAntwortmoeglichkeit(zeile);

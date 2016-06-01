@@ -24,15 +24,33 @@ public class Interactors {
 	@RequestMapping(value = "/questionnaire_input", method = RequestMethod.GET)
 	public String zeigeLeerenFragebogen(ModelMap model) throws IOException {
 
-		List<Aufgabe> aufgaben = start();
-		
-		Fragebogen fragebogen = new Fragebogen();
-		fragebogen.setAufgaben(aufgaben);
+		Fragebogen fragebogen = leseLeerenFragebogen();
 		
 		model.addAttribute("fragebogen", fragebogen);
 		return "questionnaire_input";
 	}
 
+    @RequestMapping(value = "/questionnaire_submit", method = RequestMethod.GET)
+    public String berechnePuktzahl(Fragebogen antwortbogen) {
+    	
+
+    	System.out.println(" --- antwortbogen: " + antwortbogen);
+    	System.out.println(" --- getNutzerantwort1: " + antwortbogen.getAufgaben().get(0).getNutzerantwort());
+    	System.out.println(" --- getNutzerantwort2: " + antwortbogen.getAufgaben().get(1).getNutzerantwort());
+
+    	
+    	return "questionnaire_input";
+    }
+
+    
+	private Fragebogen leseLeerenFragebogen() throws IOException {
+		List<Aufgabe> aufgaben = start();
+		
+		Fragebogen fragebogen = new Fragebogen();
+		fragebogen.setAufgaben(aufgaben);
+		return fragebogen;
+	}
+	
 	List<Aufgabe> start() throws IOException {
 		List<String> zeilen = fragebogenProvider.leseFragebogenDatei();
 		List<Aufgabe> aufgaben = aufgabenFactory.erstelleAufgaben(zeilen);

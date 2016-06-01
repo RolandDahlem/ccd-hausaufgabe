@@ -15,4 +15,8 @@ public class Fragebogen {
 		this.aufgaben = aufgaben;
 	}
 	
+	@Override
+	public String toString() {
+		return aufgaben.toString();
+	}
 }
