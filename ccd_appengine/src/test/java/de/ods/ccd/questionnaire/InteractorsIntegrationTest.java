@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import de.ods.ccd.AbstractSpringIntegrationTest;
 import de.ods.ccd.questionnaire.domain.Aufgabe;
 
-public class InteractorsIntegrationTest extends AbstractSpringIntegrationTest{
+public class InteractorsIntegrationTest extends AbstractSpringIntegrationTest {
 
 	@Autowired
 	private Interactors interactors;
