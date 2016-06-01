@@ -31,13 +31,13 @@ public class Interactors {
 	}
 
     @RequestMapping(value = "/questionnaire_submit", method = RequestMethod.GET)
-    public String berechnePuktzahl(Fragebogen antwortbogen) {
+    public String berechnePuktzahl(ModelMap model, Fragebogen antwortbogen) throws IOException {
     	
+    	Fragebogen fragebogen = leseLeerenFragebogen();
+    	
+    	fragebogen.ergaenzeNutzerantworten(antwortbogen);
 
-    	System.out.println(" --- antwortbogen: " + antwortbogen);
-    	System.out.println(" --- getNutzerantwort1: " + antwortbogen.getAufgaben().get(0).getNutzerantwort());
-    	System.out.println(" --- getNutzerantwort2: " + antwortbogen.getAufgaben().get(1).getNutzerantwort());
-
+    	model.addAttribute("fragebogen", fragebogen);
     	
     	return "questionnaire_input";
     }

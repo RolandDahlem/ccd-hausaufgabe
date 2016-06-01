@@ -19,4 +19,13 @@ public class Fragebogen {
 	public String toString() {
 		return aufgaben.toString();
 	}
+
+	public void ergaenzeNutzerantworten(Fragebogen antwortbogen) {
+		
+		for(int i=0; i< antwortbogen.getAufgaben().size(); i++){
+			String nutzerantwort = antwortbogen.getAufgaben().get(i).getNutzerantwort();
+			aufgaben.get(i).setNutzerantwort(nutzerantwort);
+		}
+
+	}
 }
