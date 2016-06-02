@@ -1,7 +1,7 @@
 package de.ods.ccd.loc;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;

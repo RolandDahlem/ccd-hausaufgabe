@@ -1,12 +1,9 @@
 package de.ods.ccd.loc;
 
 import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.endsWith;
 import static org.junit.Assert.assertThat;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 
 import org.junit.Test;
 
