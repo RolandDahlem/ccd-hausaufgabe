@@ -4,6 +4,8 @@ import java.util.StringTokenizer;
 
 class Minenfeld {
 
+	// Ich bin ein Kommentar
+	
 	static final char KEINE_MINE = '.';
 	static final char MINE_VORHANDEN = '*';
 	

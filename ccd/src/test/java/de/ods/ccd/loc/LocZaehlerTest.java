@@ -1,7 +1,7 @@
 package de.ods.ccd.loc;
 
 import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.endsWith;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
@@ -16,19 +16,7 @@ public class LocZaehlerTest {
 		
 		locZaehler.zaehleLinesOfCode("loc/eineDatei/", consumerSpy);
 		
-		assertThat(consumerSpy.getConsumed().get(0), containsString("Minenfeld.java"));
+		assertThat(consumerSpy.getConsumed().get(0), containsString("Minenfeld.java gesamtzeilen=114, codezeilen=113"));
 	}
-	
-	@Test
-	public void test_ob_eine_datei_analysiert_wird() throws Exception {
-		
-		String dateiPfad = new FileProvider().ermittleDateinamen("loc/eineDatei/Minenfeld.java");		
-		Einzelergebnis einzelergebnis = locZaehler.analysiereDatei(dateiPfad);
-		
-		assertThat(einzelergebnis.getGesamtzeilen(), is(112));
-	}
-	
-	
-	
 	
 }

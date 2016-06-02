@@ -10,7 +10,8 @@ import java.util.function.Consumer;
 public class LocZaehler {
 
 	private FileProvider fileProvider = new FileProvider();
-			
+	private Analysierer analysierer = new Analysierer();
+	
 	public void zaehleLinesOfCode(String pfad, Consumer<String> gui) throws IOException, URISyntaxException {
 		
 		String ordnerPfad = fileProvider.ermittleDateinamen(pfad);
@@ -21,7 +22,7 @@ public class LocZaehler {
 			public void accept(String dateiname) {
 				
 				try {
-					Einzelergebnis einzelergebnis = analysiereDatei(dateiname);
+					Einzelergebnis einzelergebnis = analysierer.analysiereDatei(dateiname);
 					gui.accept(dateiname + " " + einzelergebnis.toString());
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -31,17 +32,6 @@ public class LocZaehler {
 			
 		});
 	}
-
-	Einzelergebnis analysiereDatei(String dateiname) throws IOException {
-				
-		List<String> zeilen = fileProvider.leseZeilen(dateiname);
-		
-		Einzelergebnis ergebnis = new Einzelergebnis();
-		ergebnis.setGesamtzeilen(zeilen.size());
-		
-		return ergebnis;
-	}
-
     
 
 }
