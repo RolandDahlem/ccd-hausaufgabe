@@ -23,7 +23,12 @@ public class FileProvider {
 		Path ordner = Paths.get(ordnerPfad);
 		try (DirectoryStream<Path> directoryStream = Files.newDirectoryStream(ordner)) {
             for (Path path : directoryStream) {
-            	consumer.accept(path.toString());
+            	
+            	if(Files.isDirectory(path)){
+            		leseCodedatei(path.toString(), consumer);
+            	} else {
+            		consumer.accept(path.toString());
+            	}
             }
         }
 	}

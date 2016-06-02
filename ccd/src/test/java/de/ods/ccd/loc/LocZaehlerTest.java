@@ -19,4 +19,13 @@ public class LocZaehlerTest {
 		assertThat(consumerSpy.getConsumed().get(0), containsString("Minenfeld.java gesamtzeilen=114, codezeilen=113"));
 	}
 	
+	@Test
+	public void test_ob_die_lines_of_code_in_einem_unterordner_gezaehlt_werden() throws Exception {
+		ConsumerSpy consumerSpy = new ConsumerSpy();
+		
+		locZaehler.zaehleLinesOfCode("loc/dateienInUnterordnern/", consumerSpy);
+		
+		assertThat(consumerSpy.getConsumed().get(0), containsString("Oben.java gesamtzeilen=114, codezeilen=113"));
+		assertThat(consumerSpy.getConsumed().get(1), containsString("Unten1.java gesamtzeilen=114, codezeilen=113"));
+	}
 }
