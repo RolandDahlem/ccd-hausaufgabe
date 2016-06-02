@@ -33,4 +33,20 @@ public class Analysierer {
 		return Pattern.matches("[ \t]*//.*", zeile);
 	}
 
+	public Einzelergebnis agreggiere(List<Einzelergebnis> ergebnisse) {
+		
+		int gesamtZeilen = 0;
+		int codeZeilen = 0;
+		for (Einzelergebnis einzelergebnis : ergebnisse) {
+			gesamtZeilen += einzelergebnis.getGesamtzeilen();
+			codeZeilen += einzelergebnis.getCodezeilen();
+		}
+		
+		Einzelergebnis ergebnis = new Einzelergebnis();
+		ergebnis.setGesamtzeilen(gesamtZeilen);
+		ergebnis.setCodezeilen(codeZeilen);
+		
+		return ergebnis;
+	}
+
 }

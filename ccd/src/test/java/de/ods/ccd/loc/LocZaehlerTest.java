@@ -4,6 +4,10 @@ import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.endsWith;
 import static org.junit.Assert.assertThat;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+
 import org.junit.Test;
 
 public class LocZaehlerTest {
@@ -25,7 +29,16 @@ public class LocZaehlerTest {
 		
 		locZaehler.zaehleLinesOfCode("loc/dateienInUnterordnern/", consumerSpy);
 		
-		assertThat(consumerSpy.getConsumed().get(0), containsString("Oben.java gesamtzeilen=114, codezeilen=113"));
-		assertThat(consumerSpy.getConsumed().get(1), containsString("Unten1.java gesamtzeilen=114, codezeilen=113"));
+		List<String> guiZeilen = consumerSpy.getConsumed();
+		
+		String letzteZeile = guiZeilen.get(guiZeilen.size() -1);
+
+		assertThat(letzteZeile, containsString("gesamtzeilen=342, codezeilen=339"));
 	}
+	
+
+	
+	
+	
+	
 }
