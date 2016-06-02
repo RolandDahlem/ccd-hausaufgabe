@@ -34,9 +34,7 @@ public class Interactors {
     public String berechnePuktzahl(ModelMap model, Fragebogen antwortbogen) throws IOException {
     	
     	Fragebogen fragebogen = leseLeerenFragebogen();
-    	
     	fragebogen.ergaenzeNutzerantworten(antwortbogen);
-
     	model.addAttribute("fragebogen", fragebogen);
     	
     	if(fragebogen.isVollstaendig()){

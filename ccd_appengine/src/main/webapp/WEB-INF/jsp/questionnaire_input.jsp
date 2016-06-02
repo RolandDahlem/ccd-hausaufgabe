@@ -14,10 +14,10 @@
 		<c:forEach items="${fragebogen.aufgaben}" var="aufgabe" varStatus="aufgabenindex" >
 			<form:label path="aufgaben[${aufgabenindex.index}].nutzerantwort">${aufgabe.frage} :</form:label>
 			<form:radiobuttons path="aufgaben[${aufgabenindex.index}].nutzerantwort" items="${aufgabe.antwortmoeglichkeiten}"  /> 
-		    </br>
+		    <br/>
 		</c:forEach>
 
- 		</br>
+ 		<br/>
 		<input type="submit" value="Show my score...">
 	</form:form>
 
