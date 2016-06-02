@@ -16,7 +16,7 @@ public class LocZaehlerGUI {
 	}
 	
 	public static void main(String[] args) throws IOException, URISyntaxException {
-		new LocZaehler().zaehleLinesOfCode("loc/dateienInUnterordnern/", new GUI());
+		new LocZaehler().zaehleLinesOfCode(args[0], new GUI());
 	}
 
 }
