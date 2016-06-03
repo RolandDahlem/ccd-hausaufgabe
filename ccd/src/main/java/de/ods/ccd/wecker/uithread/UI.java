@@ -17,13 +17,13 @@ public class UI implements Runnable {
 	}
 
 	private KonsoleOutput konsoleOutput = new KonsoleOutput();
-	private Arbeiter arbeiter;
-	private ArbeitAble arbeitAble;
+	private Timer arbeiter;
+	private Arbeiter arbeitAble;
 
-	public UI(ArbeitAble arbeitAble, Arbeiter arbeiter) {
+	public UI(Arbeiter arbeitAble, Timer arbeiter) {
 		this.arbeitAble = arbeitAble;
 		this.arbeiter = arbeiter;
-		arbeiter.setOutput(konsoleOutput);
+		arbeitAble.setDisplay(konsoleOutput);
 	}
 
 	@Override
@@ -55,6 +55,17 @@ public class UI implements Runnable {
 		
 	}
 
+	public static void start(Arbeiter arbeitAble) {
+		Timer arbeiter = new Timer(arbeitAble);
+		UI ui = new UI(arbeitAble, arbeiter);
+		
+		Thread thread_wecker = new Thread(arbeiter);
+		Thread thread_ui = new Thread(ui);
+
+		thread_wecker.start();
+		thread_ui.start();
+	}
+	
 
 
 }
