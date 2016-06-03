@@ -15,7 +15,7 @@ public class AnalysiererTest {
 	@Test
 	public void test_ob_eine_datei_analysiert_wird() throws Exception {
 		
-		String dateiPfad = new FileProvider().ermittleDateinamen("loc/eineDatei/Minenfeld.java");		
+		String dateiPfad = new FileProvider().ermittleDateiname("loc/eineDatei/Minenfeld.java");		
 		Einzelergebnis einzelergebnis = analysierer.analysiereDatei(dateiPfad);
 		
 		assertThat(einzelergebnis.getGesamtzeilen(), is(114));

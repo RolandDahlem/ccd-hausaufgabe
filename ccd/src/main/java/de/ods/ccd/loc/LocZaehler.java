@@ -15,18 +15,15 @@ public class LocZaehler {
 	
 	
 	public void zaehleLinesOfCode(String pfad, Consumer<String> gui) throws IOException, URISyntaxException {
-		
-		String ordnerPfad = fileProvider.ermittleDateinamen(pfad);
-
+		String ordnerPfad = fileProvider.ermittleDateiname(pfad);
+		// lesen
+		// analysieren
 		List<Einzelergebnis> ergebnisse = leseCodedatei(ordnerPfad, gui);
-		
 		agreggiere(ergebnisse, gui);
 	}
 
 	void agreggiere(List<Einzelergebnis> ergebnisse, Consumer<String> gui) {
-		
 		Einzelergebnis gesamtErgebnis = analysierer.agreggiere(ergebnisse);
-		
 		gui.accept(gesamtErgebnis.toString());
 	}
 

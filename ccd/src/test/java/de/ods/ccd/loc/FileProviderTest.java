@@ -12,14 +12,14 @@ public class FileProviderTest {
 
 	@Test
 	public void test_ob_ordnerpfad_ermittel_werdne_kann() throws Exception {
-		String ordnerPfad = fileProvider.ermittleDateinamen("loc/eineDatei/");
+		String ordnerPfad = fileProvider.ermittleDateiname("loc/eineDatei/");
 
 		assertThat(ordnerPfad, containsString("target"));
 	}
 	
 	@Test
 	public void test_ob_dateinamen_gefunden_werden() throws Exception {
-		String ordnerPfad = fileProvider.ermittleDateinamen("loc/eineDatei/");		
+		String ordnerPfad = fileProvider.ermittleDateiname("loc/eineDatei/");		
 		
 		ConsumerSpy consumer = new ConsumerSpy();
 		fileProvider.leseCodedatei(ordnerPfad, consumer);
@@ -30,7 +30,7 @@ public class FileProviderTest {
 
 	@Test
 	public void test_ob_dateinamen_in_unterordnern_gefunden_werden() throws Exception {
-		String ordnerPfad = fileProvider.ermittleDateinamen("loc/dateienInUnterordnern/");		
+		String ordnerPfad = fileProvider.ermittleDateiname("loc/dateienInUnterordnern/");		
 		
 		ConsumerSpy consumer = new ConsumerSpy();
 		fileProvider.leseCodedatei(ordnerPfad, consumer);

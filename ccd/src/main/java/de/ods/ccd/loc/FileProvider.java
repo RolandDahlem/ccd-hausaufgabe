@@ -13,7 +13,7 @@ import java.util.function.Consumer;
 
 public class FileProvider {
 
-	String ermittleDateinamen(String pfad) throws URISyntaxException {
+	String ermittleDateiname(String pfad) throws URISyntaxException {
 		URI uri = ClassLoader.getSystemResource(pfad).toURI();
 		Path dir = Paths.get(uri);
 		return dir.toString();
@@ -35,6 +35,7 @@ public class FileProvider {
 
 	public List<String> leseZeilen(String dateiname) throws IOException {
 		Path path = Paths.get(dateiname);
+		
 		return Files.readAllLines(path, Charset.forName("UTF-8"));
 	}
 
