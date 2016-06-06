@@ -46,7 +46,6 @@ public class UI implements Runnable {
 			arbeiter.stop();
 			BufferedReader br=new BufferedReader(isr);
 			br.readLine();
-			System.out.println("Bitte Befehl eingeben: ");
 			
 			arbeitAble.verarbeiteBenutzereingabe(br);
 			

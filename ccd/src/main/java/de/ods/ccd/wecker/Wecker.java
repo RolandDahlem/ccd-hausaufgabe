@@ -11,6 +11,7 @@ import de.ods.ccd.wecker.uithread.Arbeiter;
 public class Wecker implements Arbeiter {
 
 	private Consumer<String> display;
+	private String weckzeit;
 
 	@Override
 	public void setDisplay(Consumer<String> display) {
@@ -22,12 +23,16 @@ public class Wecker implements Arbeiter {
 		SimpleDateFormat zeitformater = new SimpleDateFormat("HH:mm:ss");
 		String uhrzeit = zeitformater.format(new Date());
 		display.accept("Es ist " + uhrzeit + " Uhr");
+		if (weckzeit != null) {
+			display.accept("Weckzeit " + weckzeit);
+		}
+		
 	}
 
 	@Override
 	public void verarbeiteBenutzereingabe(BufferedReader br) throws IOException {
-		String line = br.readLine();
-		System.out.println(" --- line: " + line);
+		System.out.println("Bitte Weckzeit eingeben: ");
+		this.weckzeit = br.readLine();
 	}
 
 
