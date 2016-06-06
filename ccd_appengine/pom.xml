@@ -73,12 +73,12 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-jdk14</artifactId>
-			<version>1.7.12</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>4.2.5.RELEASE</version>
 			<scope>test</scope>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-jdk14</artifactId>
@@ -225,11 +225,6 @@
 				</executions>
 			</plugin>
 			
-		</plugins>
-
-
-		<pluginManagement>
-			<plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
@@ -267,8 +262,10 @@
 						</jvmFlags>
 					</configuration>
 				</plugin>
-			</plugins>
-		</pluginManagement>
+				
+		</plugins>
+
+
 
 	</build>
 	

@@ -66,5 +66,17 @@ public class TextUmbruchServiceTest {
 		assertThat(ergebnis, is("Er fragte,\nwohin"));
 	}
 	
+	@Test
+	public void test_ob_grenzfaelle_in_der_naechsten_zeile_passen() {
+		
+		String umbruchstext = "Er fragte,\nwohin gehen\n";
+		int maximalbreite = 11;
+		
+		String ergebnis = service.umbrechen(umbruchstext, maximalbreite);
+		
+		assertThat(ergebnis, is("Er fragte,\nwohin gehen\n"));
+	}
+	
+
 	
 }

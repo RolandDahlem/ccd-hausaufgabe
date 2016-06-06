@@ -1,3 +1,4 @@
 *.classpath
-ccd_appengine/.settings/
+**/.settings
+target
 *.project
