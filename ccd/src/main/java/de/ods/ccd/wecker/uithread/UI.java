@@ -55,11 +55,11 @@ public class UI implements Runnable {
 		
 	}
 
-	public static void start(Arbeiter arbeitAble) {
-		Timer arbeiter = new Timer(arbeitAble);
-		UI ui = new UI(arbeitAble, arbeiter);
+	public static void start(Arbeiter arbeiter) {
+		Timer timer = new Timer(arbeiter);
+		UI ui = new UI(arbeiter, timer);
 		
-		Thread thread_wecker = new Thread(arbeiter);
+		Thread thread_wecker = new Thread(timer);
 		Thread thread_ui = new Thread(ui);
 
 		thread_wecker.start();
