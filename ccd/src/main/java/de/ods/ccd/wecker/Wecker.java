@@ -10,9 +10,24 @@ import de.ods.ccd.wecker.uithread.Arbeiter;
 
 public class Wecker implements Arbeiter {
 
+	public static class AktuelleZeitProvider {
+		public long getAktuelleUhrzeit() {
+			return System.currentTimeMillis();
+		}
+	}
+	
 	private Consumer<String> display;
 	private String weckzeit;
+	private AktuelleZeitProvider aktuelleZeitProvider;
 
+	public Wecker() {
+		setAktuelleZeitProvider(new AktuelleZeitProvider());
+	}
+	
+	public void setAktuelleZeitProvider(AktuelleZeitProvider aktuelleZeitProvider) {
+		this.aktuelleZeitProvider = aktuelleZeitProvider;
+	}
+	
 	@Override
 	public void setDisplay(Consumer<String> display) {
 		this.display = display;
@@ -21,7 +36,7 @@ public class Wecker implements Arbeiter {
 	@Override
 	public void macheArbeit() {
 		SimpleDateFormat zeitformater = new SimpleDateFormat("HH:mm:ss");
-		String uhrzeit = zeitformater.format(new Date());
+		String uhrzeit = zeitformater.format(new Date(aktuelleZeitProvider.getAktuelleUhrzeit()));
 		display.accept("Es ist " + uhrzeit + " Uhr");
 		if (weckzeit != null) {
 			display.accept("Weckzeit " + weckzeit);
@@ -29,14 +44,11 @@ public class Wecker implements Arbeiter {
 		
 	}
 
+
 	@Override
 	public void verarbeiteBenutzereingabe(BufferedReader br) throws IOException {
 		System.out.println("Bitte Weckzeit eingeben: ");
 		this.weckzeit = br.readLine();
 	}
-
-
-	
-
 
 }
