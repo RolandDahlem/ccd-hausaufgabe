@@ -1,5 +1,6 @@
 package de.ods.ccd.wecker;
 
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -31,18 +32,16 @@ public class WeckerTest {
 		this.wecker = new Wecker();
 		wecker.setDisplay(ui);
 		wecker.setAktuelleZeitProvider(zeitProvider);
-
-	}
-	
-	@Test
-	public void test_ob_die_aktuelle_uhrzeit_ausgegeben_wird() throws Exception {
-
+		
 		Calendar calendar = new GregorianCalendar(Locale.GERMAN);
 		calendar.set(Calendar.HOUR, 15);
 		calendar.set(Calendar.MINUTE, 15);
 		calendar.set(Calendar.SECOND, 15);
 		zeitProvider.setZeit(calendar.getTimeInMillis());
-		
+	}
+	
+	@Test
+	public void test_ob_die_aktuelle_uhrzeit_ausgegeben_wird() throws Exception {
 		wecker.macheArbeit();
 		
 		assertThat(ui.getLetzteAusgabe(), is("Es ist 15:15:15 Uhr"));
@@ -54,17 +53,17 @@ public class WeckerTest {
 		gibEin("9:30");
 		wecker.macheArbeit();
 		
-		assertThat(ui.getLetzteAusgabe(), is("Weckzeit 9:30"));
+		assertThat(ui.getLetzteAusgabe(), containsString("Weckzeit 9:30"));
 	}
 
-//	@Test
-//	public void test_ob_die_restzeit_angezeit_wird() throws Exception {
-//
-//		gibEin("9:30");
-//		wecker.macheArbeit();
-//		
-//		assertThat(ui.getLetzteAusgabe(), is("Weckzeit 9:30"));
-//	}
+	@Test
+	public void test_ob_die_restzeit_angezeit_wird() throws Exception {
+
+		gibEin("15:20");
+		wecker.macheArbeit();
+		
+		assertThat(ui.getLetzteAusgabe(), containsString("Restzeit 0:05"));
+	}
 	
 	private void gibEin(String eingabe) throws UnsupportedEncodingException, IOException {
 		InputStream inputstream = new ByteArrayInputStream(eingabe.getBytes(Charset.forName("UTF-8")));
