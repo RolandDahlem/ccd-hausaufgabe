@@ -2,6 +2,8 @@ package de.ods.ccd.wecker;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.function.Consumer;
 
 import de.ods.ccd.wecker.uithread.Arbeiter;
@@ -17,7 +19,9 @@ public class Wecker implements Arbeiter {
 	
 	@Override
 	public void macheArbeit() {
-		display.accept("Es ist " + System.currentTimeMillis() + " Uhr in msec");
+		SimpleDateFormat zeitformater = new SimpleDateFormat("HH:mm:ss");
+		String uhrzeit = zeitformater.format(new Date());
+		display.accept("Es ist " + uhrzeit + " Uhr");
 	}
 
 	@Override
