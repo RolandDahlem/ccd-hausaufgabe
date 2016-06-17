@@ -40,11 +40,21 @@ public class Wecker implements Arbeiter {
 		Uhrzeit jetzt = getAktuelleZeit();
 		display.accept("Es ist " + jetzt + " Uhr");
 		
-		if (weckzeit != INVALIDE_WECKZEIT) {
-						
-			String restzeit = weckzeit.berechneVorsprungZu(jetzt);
+		if (istWeckzeitValide()) {				
+			String restzeit = weckzeit.formatiereVorsprungZu(jetzt);
 			display.accept("Weckzeit " + weckzeit + " Restzeit " + restzeit);
 		}
+	}
+
+	private boolean istWeckzeitValide() {
+		if(weckzeit == INVALIDE_WECKZEIT){
+			return false;
+		}
+		
+		if(weckzeit.istFrueherAls(getAktuelleZeit())){
+			return false;
+		}
+		return true;
 	}
 
 	@Override

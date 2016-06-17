@@ -42,19 +42,22 @@ public class Uhrzeit {
 		return eingabe;
 	}
 
-	public String berechneVorsprungZu(Uhrzeit jetzt) {
-		long restzeit_in_msec = getDifferenz(jetzt);
-		
+	public String formatiereVorsprungZu(Uhrzeit vergleich) {
+		long restzeit_in_msec = unterschiedInMsec(vergleich);
+		return formatiereDauer(restzeit_in_msec);
+	}
+
+	private long unterschiedInMsec(Uhrzeit vergleich) {
+		return zeit.getTimeInMillis() - vergleich.zeit.getTimeInMillis();
+	}
+
+	private String formatiereDauer(long restzeit_in_msec) {
 		long restzeit_in_sec = restzeit_in_msec/1000;
 		long restzeit_in_min = restzeit_in_sec/60;
 		long restzeit_in_std = restzeit_in_min/60;
 		
 		DecimalFormat df = new DecimalFormat("00");
 		return df.format(restzeit_in_std) + ":" + df.format(restzeit_in_min) + ":" + df.format(restzeit_in_sec);
-	}
-
-	private long getDifferenz(Uhrzeit vergleich) {
-		return this.zeit.getTimeInMillis() - vergleich.zeit.getTimeInMillis();
 	}
 
 	private static Calendar parse(Uhrzeit jetzt, String weckzeitString) throws ParseException {
@@ -69,6 +72,10 @@ public class Uhrzeit {
 		weckzeit.set(Calendar.SECOND, eingabe.get(Calendar.SECOND));
 		
 		return weckzeit;
+	}
+
+	public boolean istFrueherAls(Uhrzeit vergleich) {
+		return unterschiedInMsec(vergleich) < 0;
 	}
 
 

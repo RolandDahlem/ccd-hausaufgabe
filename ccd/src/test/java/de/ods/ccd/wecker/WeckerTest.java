@@ -2,6 +2,7 @@ package de.ods.ccd.wecker;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertThat;
 
 import java.io.BufferedReader;
@@ -49,10 +50,10 @@ public class WeckerTest {
 	@Test
 	public void test_ob_die_weckzeit_gespeichert_werden_kann() throws Exception {
 
-		gibEin("9:30:00");
+		gibEin("16:30:00");
 		wecker.macheArbeit();
 		
-		assertThat(ui.getLetzteAusgabe(), containsString("Weckzeit 09:30:00"));
+		assertThat(ui.getLetzteAusgabe(), containsString("Weckzeit 16:30:00"));
 	}
 
 	@Test
@@ -62,6 +63,15 @@ public class WeckerTest {
 		wecker.macheArbeit();
 		
 		assertThat(ui.getLetzteAusgabe(), containsString("Restzeit 00:00:05"));
+	}
+	
+	@Test
+	public void test_ob_eine_abgelaufene_restzeit_nicht_mehr_angezeigt_wird() throws Exception {
+
+		gibEin("15:15:10");
+		wecker.macheArbeit();
+		
+		assertThat(ui.getLetzteAusgabe(), not(containsString("Restzeit")));
 	}
 	
 	private void gibEin(String eingabe) throws UnsupportedEncodingException, IOException {
