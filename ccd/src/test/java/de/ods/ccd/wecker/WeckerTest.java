@@ -24,14 +24,17 @@ public class WeckerTest {
 	private MockDisplay ui;
 	private Wecker wecker;
 	private MockProvider zeitProvider;
+	private MockAlarm alarm;
 	
 	@Before
 	public void weckerVorbereiten(){
 		this.zeitProvider = new MockProvider();
-		this.ui = new MockDisplay();
 		this.wecker = new Wecker();
+		this.ui = new MockDisplay();
+		this.alarm = new MockAlarm();
 		wecker.setDisplay(ui);
 		wecker.setAktuelleZeitProvider(zeitProvider);
+		wecker.setAlarm(alarm);
 		
 		Calendar calendar = new GregorianCalendar(Locale.GERMAN);
 		calendar.set(Calendar.HOUR_OF_DAY, 15);
@@ -72,6 +75,15 @@ public class WeckerTest {
 		wecker.macheArbeit();
 		
 		assertThat(ui.getLetzteAusgabe(), not(containsString("Restzeit")));
+	}
+	
+	@Test
+	public void test_ob_ein_alarm_ausgeloest_wird() throws Exception {
+
+		gibEin("15:15:20");
+		wecker.macheArbeit();
+		
+		assertThat(alarm.machtKrach, is(true));
 	}
 	
 	private void gibEin(String eingabe) throws UnsupportedEncodingException, IOException {

@@ -17,18 +17,32 @@ public class Wecker implements Arbeiter {
 		}
 	}
 
+	public static class Alarm {
+
+		public void macheKrach() {
+			System.out.println("asdjasdljasdbjasdba");
+		}
+		
+	}
+	
 	private Consumer<String> display;
 	private Uhrzeit weckzeit = INVALIDE_WECKZEIT;
 	private AktuelleZeitProvider aktuelleZeitProvider;
+	private Alarm alarm;
 
 	public Wecker() {
-		setAktuelleZeitProvider(new AktuelleZeitProvider());
+		this.aktuelleZeitProvider = new AktuelleZeitProvider();
+		this.alarm = new Alarm();
 	}
 
 	public void setAktuelleZeitProvider(AktuelleZeitProvider aktuelleZeitProvider) {
 		this.aktuelleZeitProvider = aktuelleZeitProvider;
 	}
 
+	public void setAlarm(Alarm alarm) {
+		this.alarm = alarm;
+	}
+	
 	@Override
 	public void setDisplay(Consumer<String> display) {
 		this.display = display;
@@ -40,10 +54,19 @@ public class Wecker implements Arbeiter {
 		Uhrzeit jetzt = getAktuelleZeit();
 		display.accept("Es ist " + jetzt + " Uhr");
 		
+		if(sollAlarmStarten()){
+			alarm.macheKrach();
+		}
+
+		
 		if (istWeckzeitValide()) {				
 			String restzeit = weckzeit.formatiereVorsprungZu(jetzt);
 			display.accept("Weckzeit " + weckzeit + " Restzeit " + restzeit);
 		}
+	}
+
+	private boolean sollAlarmStarten() {
+		return weckzeit != INVALIDE_WECKZEIT && getAktuelleZeit().istSpaeterAls(weckzeit);
 	}
 
 	private boolean istWeckzeitValide() {
@@ -51,7 +74,7 @@ public class Wecker implements Arbeiter {
 			return false;
 		}
 		
-		if(weckzeit.istFrueherAls(getAktuelleZeit())){
+		if(weckzeit.istSpaeterAls(getAktuelleZeit())){
 			return false;
 		}
 		return true;

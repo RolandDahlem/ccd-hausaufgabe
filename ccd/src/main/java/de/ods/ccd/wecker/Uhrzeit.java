@@ -74,10 +74,9 @@ public class Uhrzeit {
 		return weckzeit;
 	}
 
-	public boolean istFrueherAls(Uhrzeit vergleich) {
-		return unterschiedInMsec(vergleich) < 0;
+	public boolean istSpaeterAls(Uhrzeit vergleich) {
+		return  unterschiedInMsec(vergleich) < 0;
 	}
-
 
 	
 }
