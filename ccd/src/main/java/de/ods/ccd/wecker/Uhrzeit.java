@@ -75,7 +75,7 @@ public class Uhrzeit {
 	}
 
 	public boolean istSpaeterAls(Uhrzeit vergleich) {
-		return  unterschiedInMsec(vergleich) < 0;
+		return  unterschiedInMsec(vergleich) > 0;
 	}
 
 	

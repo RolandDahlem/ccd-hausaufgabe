@@ -80,10 +80,19 @@ public class WeckerTest {
 	@Test
 	public void test_ob_ein_alarm_ausgeloest_wird() throws Exception {
 
-		gibWeckzeitEin("15:15:20");
+		gibWeckzeitEin("15:15:10");
 		wecker.macheArbeit();
 		
 		assertThat(alarm.machtKrach, is(true));
+	}
+	
+	@Test
+	public void test_ob_ein_alarm_nicht_ausgeloest_wird() throws Exception {
+
+		gibWeckzeitEin("15:15:20");
+		wecker.macheArbeit();
+		
+		assertThat(alarm.machtKrach, is(false));
 	}
 	
 	@Test

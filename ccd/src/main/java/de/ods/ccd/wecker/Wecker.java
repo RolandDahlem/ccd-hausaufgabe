@@ -58,10 +58,10 @@ public class Wecker implements Arbeiter {
 		Uhrzeit jetzt = getAktuelleZeit();
 		display.accept("Es ist " + jetzt + " Uhr");
 		
-		if(sollAlarmStarten()){
+		boolean sollAlarmStarten = sollAlarmStarten();
+		if(sollAlarmStarten){
 			alarm.start();
 		}
-
 		
 		if (istWeckzeitValide()) {				
 			String restzeit = weckzeit.formatiereVorsprungZu(jetzt);
@@ -70,7 +70,12 @@ public class Wecker implements Arbeiter {
 	}
 
 	private boolean sollAlarmStarten() {
-		return weckzeit != INVALIDE_WECKZEIT && getAktuelleZeit().istSpaeterAls(weckzeit);
+		
+		if(weckzeit == INVALIDE_WECKZEIT){
+			return false;
+		}
+		
+		return getAktuelleZeit().istSpaeterAls(weckzeit);
 	}
 
 	private boolean istWeckzeitValide() {
@@ -78,7 +83,7 @@ public class Wecker implements Arbeiter {
 			return false;
 		}
 		
-		if(weckzeit.istSpaeterAls(getAktuelleZeit())){
+		if(weckzeit.istSpaeterAls(getAktuelleZeit()) == false){
 			return false;
 		}
 		return true;
