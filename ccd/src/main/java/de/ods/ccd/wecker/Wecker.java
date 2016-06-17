@@ -66,10 +66,13 @@ public class Wecker implements Arbeiter {
 		}
 		
 		if (istWeckzeitValide()) {				
-			String restzeit = weckzeit.formatiereVorsprungZu(jetzt);
-			ausgabe.append("Weckzeit " + weckzeit + " Restzeit " + restzeit);
+			ausgabe.append(" Weckzeit " + weckzeit);
+			if (istRestzeitValide()) {				
+				String restzeit = weckzeit.formatiereVorsprungZu(jetzt);
+				ausgabe.append(" Restzeit " + restzeit);
+			}
 		}
-		
+
 		display.accept(ausgabe.toString());
 	}
 
@@ -83,16 +86,13 @@ public class Wecker implements Arbeiter {
 	}
 
 	private boolean istWeckzeitValide() {
-		if(weckzeit == INVALIDE_WECKZEIT){
-			return false;
-		}
-		
-		if(weckzeit.istSpaeterAls(getAktuelleZeit()) == false){
-			return false;
-		}
-		return true;
+		return weckzeit != INVALIDE_WECKZEIT;
 	}
 
+	private boolean istRestzeitValide() {
+		return weckzeit.istSpaeterAls(getAktuelleZeit());
+	}
+	
 	@Override
 	public void verarbeiteBenutzereingabe(BufferedReader br) throws IOException {
 		System.out.println("Bitte Aktion Auswählen: ");
