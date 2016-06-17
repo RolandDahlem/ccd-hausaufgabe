@@ -55,8 +55,10 @@ public class Wecker implements Arbeiter {
 	@Override
 	public void macheArbeit() {
 		
+		StringBuilder ausgabe = new StringBuilder();
+		
 		Uhrzeit jetzt = getAktuelleZeit();
-		display.accept("Es ist " + jetzt + " Uhr");
+		ausgabe.append("Es ist " + jetzt + " Uhr");
 		
 		boolean sollAlarmStarten = sollAlarmStarten();
 		if(sollAlarmStarten){
@@ -65,8 +67,10 @@ public class Wecker implements Arbeiter {
 		
 		if (istWeckzeitValide()) {				
 			String restzeit = weckzeit.formatiereVorsprungZu(jetzt);
-			display.accept("Weckzeit " + weckzeit + " Restzeit " + restzeit);
+			ausgabe.append("Weckzeit " + weckzeit + " Restzeit " + restzeit);
 		}
+		
+		display.accept(ausgabe.toString());
 	}
 
 	private boolean sollAlarmStarten() {
