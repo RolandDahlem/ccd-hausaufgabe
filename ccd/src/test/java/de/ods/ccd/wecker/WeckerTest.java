@@ -53,7 +53,7 @@ public class WeckerTest {
 	@Test
 	public void test_ob_die_weckzeit_gespeichert_werden_kann() throws Exception {
 
-		gibEin("16:30:00");
+		gibWeckzeitEin("16:30:00");
 		wecker.macheArbeit();
 		
 		assertThat(ui.getLetzteAusgabe(), containsString("Weckzeit 16:30:00"));
@@ -62,7 +62,7 @@ public class WeckerTest {
 	@Test
 	public void test_ob_die_restzeit_angezeit_wird() throws Exception {
 
-		gibEin("15:15:20");
+		gibWeckzeitEin("15:15:20");
 		wecker.macheArbeit();
 		
 		assertThat(ui.getLetzteAusgabe(), containsString("Restzeit 00:00:05"));
@@ -71,7 +71,7 @@ public class WeckerTest {
 	@Test
 	public void test_ob_eine_abgelaufene_restzeit_nicht_mehr_angezeigt_wird() throws Exception {
 
-		gibEin("15:15:10");
+		gibWeckzeitEin("15:15:10");
 		wecker.macheArbeit();
 		
 		assertThat(ui.getLetzteAusgabe(), not(containsString("Restzeit")));
@@ -80,17 +80,35 @@ public class WeckerTest {
 	@Test
 	public void test_ob_ein_alarm_ausgeloest_wird() throws Exception {
 
-		gibEin("15:15:20");
+		gibWeckzeitEin("15:15:20");
 		wecker.macheArbeit();
 		
 		assertThat(alarm.machtKrach, is(true));
 	}
 	
+	@Test
+	public void test_ob_ein_wecker_wieder_gestoppet_werden_kann() throws Exception {
+
+		gibWeckzeitEin("15:15:20");
+		wecker.macheArbeit();
+		
+		gibStoppsignalEin();
+		assertThat(alarm.machtKrach, is(false));
+	}
+	
+	private void gibStoppsignalEin() throws UnsupportedEncodingException, IOException {
+		gibEin("2");
+	}
+
+	private void gibWeckzeitEin(String weckzeit) throws UnsupportedEncodingException, IOException {
+		gibEin("1" + "\n" + weckzeit);
+	}
+
 	private void gibEin(String eingabe) throws UnsupportedEncodingException, IOException {
 		InputStream inputstream = new ByteArrayInputStream(eingabe.getBytes(Charset.forName("UTF-8")));
 		InputStreamReader reader = new InputStreamReader(inputstream, "UTF-8");
 		BufferedReader bufferedReader = new BufferedReader(reader);
 		wecker.verarbeiteBenutzereingabe(bufferedReader);
 	}
-
+	
 }

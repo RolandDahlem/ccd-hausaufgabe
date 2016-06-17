@@ -19,8 +19,12 @@ public class Wecker implements Arbeiter {
 
 	public static class Alarm {
 
-		public void macheKrach() {
-			System.out.println("asdjasdljasdbjasdba");
+		public void start() {
+			System.out.println("Alarm gestartet");
+		}
+
+		public void stopp() {
+			System.out.println("Alarm gestoppet");
 		}
 		
 	}
@@ -55,7 +59,7 @@ public class Wecker implements Arbeiter {
 		display.accept("Es ist " + jetzt + " Uhr");
 		
 		if(sollAlarmStarten()){
-			alarm.macheKrach();
+			alarm.start();
 		}
 
 		
@@ -82,7 +86,19 @@ public class Wecker implements Arbeiter {
 
 	@Override
 	public void verarbeiteBenutzereingabe(BufferedReader br) throws IOException {
-		this.weckzeit = leseWeckzeitEin(br);
+		System.out.println("Bitte Aktion Auswählen: ");
+		System.out.println("  1: Weckzeit setzen");
+		System.out.println("  2: Wecker stoppen");
+		
+		String aktion = br.readLine();
+		
+		if(aktion.equals("1")){
+			this.weckzeit = leseWeckzeitEin(br);
+		} if (aktion.equals("2")){
+			this.weckzeit = INVALIDE_WECKZEIT;
+			this.alarm.stopp();
+		}
+		
 	}
 
 	private Uhrzeit leseWeckzeitEin(BufferedReader br) throws IOException {

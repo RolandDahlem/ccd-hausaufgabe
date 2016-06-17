@@ -6,8 +6,13 @@ class MockAlarm extends Alarm {
 
 	boolean machtKrach = false;
 	
-	public void macheKrach() {
+	public void start() {
 		machtKrach = true;
+	}
+	
+	@Override
+	public void stopp() {
+		machtKrach = false;
 	}
 	
 }
