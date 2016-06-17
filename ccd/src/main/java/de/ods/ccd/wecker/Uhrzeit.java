@@ -21,6 +21,10 @@ public class Uhrzeit {
 		this(parse(aktuelleUhrzeit));		
 	}
 
+	public Uhrzeit(Uhrzeit aktuelleZeit, String weckzeitString) throws ParseException {
+		this(parse(aktuelleZeit, weckzeitString));	
+	}
+
 	@Override
 	public String toString() {
 		return format(zeit.getTime());
@@ -53,7 +57,7 @@ public class Uhrzeit {
 		return this.zeit.getTimeInMillis() - vergleich.zeit.getTimeInMillis();
 	}
 
-	public static Uhrzeit parse(Uhrzeit jetzt, String weckzeitString) throws ParseException {
+	private static Calendar parse(Uhrzeit jetzt, String weckzeitString) throws ParseException {
 		DateFormat format = new SimpleDateFormat("HH:mm:ss", Locale.GERMAN);
 
 		Calendar eingabe = new GregorianCalendar(Locale.GERMAN);
@@ -64,7 +68,7 @@ public class Uhrzeit {
 		weckzeit.set(Calendar.MINUTE, eingabe.get(Calendar.MINUTE));
 		weckzeit.set(Calendar.SECOND, eingabe.get(Calendar.SECOND));
 		
-		return new Uhrzeit(weckzeit);
+		return weckzeit;
 	}
 
 

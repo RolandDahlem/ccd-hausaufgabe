@@ -58,7 +58,7 @@ public class Wecker implements Arbeiter {
 		String weckzeitString = br.readLine();
 		
 		try{
-			return Uhrzeit.parse(getAktuelleZeit(), weckzeitString);
+			return new Uhrzeit(getAktuelleZeit(), weckzeitString);
 		} catch (ParseException e) {
 			display.accept("Falsches Format in '" + weckzeitString + "' Bitte HH:mm:ss benutzen (Bsp.: 15:15:15)");
 			return INVALIDE_WECKZEIT;
