@@ -34,7 +34,7 @@ public class WeckerTest {
 		wecker.setAktuelleZeitProvider(zeitProvider);
 		
 		Calendar calendar = new GregorianCalendar(Locale.GERMAN);
-		calendar.set(Calendar.HOUR, 15);
+		calendar.set(Calendar.HOUR_OF_DAY, 15);
 		calendar.set(Calendar.MINUTE, 15);
 		calendar.set(Calendar.SECOND, 15);
 		zeitProvider.setZeit(calendar.getTimeInMillis());
