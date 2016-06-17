@@ -20,7 +20,6 @@ import org.junit.Test;
 
 public class WeckerTest {
 
-
 	private MockDisplay ui;
 	private Wecker wecker;
 	private MockProvider zeitProvider;
@@ -59,7 +58,7 @@ public class WeckerTest {
 	@Test
 	public void test_ob_die_restzeit_angezeit_wird() throws Exception {
 
-		gibEin("15:20:00");
+		gibEin("15:15:20");
 		wecker.macheArbeit();
 		
 		assertThat(ui.getLetzteAusgabe(), containsString("Restzeit 0:05"));
