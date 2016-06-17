@@ -50,16 +50,16 @@ public class WeckerTest {
 	@Test
 	public void test_ob_die_weckzeit_gespeichert_werden_kann() throws Exception {
 
-		gibEin("9:30");
+		gibEin("9:30:00");
 		wecker.macheArbeit();
 		
-		assertThat(ui.getLetzteAusgabe(), containsString("Weckzeit 9:30"));
+		assertThat(ui.getLetzteAusgabe(), containsString("Weckzeit 09:30:00"));
 	}
 
 	@Test
 	public void test_ob_die_restzeit_angezeit_wird() throws Exception {
 
-		gibEin("15:20");
+		gibEin("15:20:00");
 		wecker.macheArbeit();
 		
 		assertThat(ui.getLetzteAusgabe(), containsString("Restzeit 0:05"));
