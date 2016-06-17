@@ -61,7 +61,7 @@ public class WeckerTest {
 		gibEin("15:15:20");
 		wecker.macheArbeit();
 		
-		assertThat(ui.getLetzteAusgabe(), containsString("Restzeit 0:05"));
+		assertThat(ui.getLetzteAusgabe(), containsString("Restzeit 00:00:05"));
 	}
 	
 	private void gibEin(String eingabe) throws UnsupportedEncodingException, IOException {
