@@ -22,6 +22,11 @@ public class Multiplikatortest {
 		assertThat(mult(14,1), is(14*1));
 	}
 	
+	@Test
+	public void test_ob_komplexe_zahlen_multipliziert_werden_koennen() throws Exception {
+		assertThat(mult(47,42), is(47*42));
+	}
+	
 	private int mult(int i, int j) {
 		return new Multiplikator().mult(i,j);
 	}
