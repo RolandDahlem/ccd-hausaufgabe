@@ -24,16 +24,10 @@ public class Tabelle {
 	}
 
 	int auswerten() {
-		int ergebnis = 0;
-		while(stack.isEmpty() == false){
-			Zeile zeile = stack.pop();
-			
-			if(zeile.i % 2 != 0){
-				ergebnis += zeile.j;
-			}
-		}
-		
-		return ergebnis;
+		return stack.stream()
+				.filter(zeile -> zeile.i % 2 != 0)
+				.mapToInt(zeile -> zeile.j)
+				.sum();
 	}
 
 }
