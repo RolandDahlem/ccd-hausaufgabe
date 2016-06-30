@@ -25,9 +25,13 @@ public class Multiplikator {
 
 	}
 	
-	private Deque<Zeile> stack = new ArrayDeque<Zeile>();
-	
 	public int mult(int i, int j) {
+		Deque<Zeile> stack = tabelleErstellen(i, j);
+		return tabelleAuswerten(stack);
+	}
+
+	private Deque<Zeile> tabelleErstellen(int i, int j) {
+		Deque<Zeile> stack = new ArrayDeque<Zeile>();
 		Zeile zeile = new Zeile(i, j);
 		stack.push(zeile);
 		
@@ -35,11 +39,10 @@ public class Multiplikator {
 			zeile = zeile.naechsteZeile();
 			stack.push(zeile);
 		}
-
-		return stackAuswerten(stack);
+		return stack;
 	}
 
-	private int stackAuswerten(Deque<Zeile> stack) {
+	private int tabelleAuswerten(Deque<Zeile> stack) {
 		int ergebnis = 0;
 		while(stack.isEmpty() == false){
 			Zeile zeile = stack.pop();
