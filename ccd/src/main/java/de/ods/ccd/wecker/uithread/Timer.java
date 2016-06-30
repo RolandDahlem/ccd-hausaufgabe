@@ -15,9 +15,11 @@ public class Timer implements Runnable {
 	
 	@Override
 	public void run() {
+		
+		// TODO: durch java.util.Timer ersetzen
 		try {
 			while (true) {
-
+ 
 				if(isRunning){
 					arbeitAble.macheArbeit();
 				}

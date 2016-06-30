@@ -60,8 +60,7 @@ public class Wecker implements Arbeiter {
 		Uhrzeit jetzt = getAktuelleZeit();
 		ausgabe.append("Es ist " + jetzt + " Uhr");
 		
-		boolean sollAlarmStarten = sollAlarmStarten();
-		if(sollAlarmStarten){
+		if(sollAlarmStarten()){
 			alarm.start();
 		}
 		
