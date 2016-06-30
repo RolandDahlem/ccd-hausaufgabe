@@ -12,6 +12,11 @@ public class Multiplikatortest {
 		assertThat(mult(1,3), is(1*3));
 	}
 		
+	@Test
+	public void test_ob_eine_iteration_funktioniert() throws Exception {
+		assertThat(mult(2,1), is(2*1));
+	}
+	
 	private int mult(int i, int j) {
 		return new Multiplikator().mult(i,j);
 	}
