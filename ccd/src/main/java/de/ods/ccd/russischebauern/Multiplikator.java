@@ -5,26 +5,6 @@ import java.util.Deque;
 
 public class Multiplikator {
 
-	private static class Zeile{
-		
-		private int i,j;
-		
-		public Zeile(int i, int j) {
-			this.i = i;
-			this.j = j;
-		}
-
-		public Zeile naechsteZeile() {
-			return new Zeile(i >> 1, j << 1);
-		}
-
-		@Override
-		public String toString() {
-			return "Zeile [i=" + i + ", j=" + j + "]";
-		}
-
-	}
-	
 	public int mult(int i, int j) {
 		Deque<Zeile> stack = tabelleErstellen(i, j);
 		return tabelleAuswerten(stack);
