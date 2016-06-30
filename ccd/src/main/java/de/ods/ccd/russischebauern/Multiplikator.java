@@ -22,9 +22,7 @@ public class Multiplikator {
 		public String toString() {
 			return "Zeile [i=" + i + ", j=" + j + "]";
 		}
-		
-		
-		
+
 	}
 	
 	private Deque<Zeile> stack = new ArrayDeque<Zeile>();
@@ -33,8 +31,10 @@ public class Multiplikator {
 		Zeile zeile = new Zeile(i, j);
 		stack.push(zeile);
 		
-		zeile = zeile.naechsteZeile();
-		stack.push(zeile);
+		while(zeile.i >= 1){
+			zeile = zeile.naechsteZeile();
+			stack.push(zeile);
+		}
 
 		return stackAuswerten(stack);
 	}
