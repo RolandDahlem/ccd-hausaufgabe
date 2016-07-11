@@ -13,7 +13,7 @@ import de.ods.ccd.questionnaire.domain.Aufgabe;
 import de.ods.ccd.questionnaire.domain.Fragebogen;
 
 @Controller
-public class Interactors {
+public class QuestionaireInteractors {
 	
 	@Autowired
 	private FragebogenProvider fragebogenProvider;

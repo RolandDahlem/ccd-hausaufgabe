@@ -15,7 +15,7 @@ import de.ods.ccd.questionnaire.domain.Aufgabe;
 public class InteractorsIntegrationTest extends AbstractSpringIntegrationTest {
 
 	@Autowired
-	private Interactors interactors;
+	private QuestionaireInteractors interactors;
 	
 	@Test
 	public void test_ob_die_vorgabe_datei_eingelesen_wird() throws Exception {
