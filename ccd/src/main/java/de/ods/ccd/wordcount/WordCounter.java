@@ -5,9 +5,12 @@ import java.util.List;
 
 public class WordCounter {
 
+	private List<String> stoppwoerter = new ArrayList<>();
+
 	public int countWords(String satz) {
 		
 		List<String> woerter = parseWoerter(satz);
+		woerter.removeAll(stoppwoerter);
 		return woerter.size();
 	}
 
@@ -36,6 +39,10 @@ public class WordCounter {
 			// z.B: 2 Leerezeichen hintereinander
 		}
 		return letztesWort;
+	}
+
+	public void setStoppwoerter(List<String> stoppwoerter) {
+		this.stoppwoerter = stoppwoerter;		
 	}
 
 }
