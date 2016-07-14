@@ -3,10 +3,7 @@ package de.ods.ccd.wordcount;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 import org.junit.Test;
 

@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URISyntaxException;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 public class WordCounterUI {
 
@@ -14,7 +15,7 @@ public class WordCounterUI {
 	
 	public WordCounterUI() {
 		wordCounter = new WordCounter();
-		wordCounter.setStoppwoerter(new StoppwortProvider().getStoppwoerter());
+		wordCounter.setStoppwoerter(new FileProvider().getStoppwoerter());
 	}
 	
 	public void setDisplay(Consumer<String> display) {
@@ -24,22 +25,30 @@ public class WordCounterUI {
 	public static void main(String[] args) throws IOException, URISyntaxException {
 		WordCounterUI wordCounterUI = new WordCounterUI();
 		wordCounterUI.setDisplay(new KonsoleOutput());
-		wordCounterUI.berechne(new InputStreamReader(System.in));
+		wordCounterUI.berechne(new InputStreamReader(System.in), args);
 	}
 	
-	public void berechne(Reader reader) throws IOException {
-		
-		display.accept("Enter your text: ");
-		
-		String line = holeInput(reader);
-		int wordCount = wordCounter.countWords(line);
+	void berechne(Reader reader) throws IOException {
+		berechne(reader, new String[0]);
+	}
+	
+	public void berechne(Reader reader, String[] filenames) throws IOException {
+		String satz = holeInput(reader, filenames);
+		int wordCount = wordCounter.countWords(satz);
 		display.accept("Number of Words: " + wordCount);
 	}
 
-	private String holeInput(Reader reader) throws IOException {
-		try(BufferedReader br=new BufferedReader(reader)){
-			return br.readLine();
-		}		
+	private String holeInput(Reader reader, String[] filenames) throws IOException {
+		
+		if(filenames.length == 0){
+			display.accept("Enter your text: ");
+			try(BufferedReader br=new BufferedReader(reader)){
+				return br.readLine();
+			}	
+		} else {
+			return new FileProvider().leseDatei(filenames[0]).stream().collect(Collectors.joining(" "));
+		}
+	
 	}
 
 }

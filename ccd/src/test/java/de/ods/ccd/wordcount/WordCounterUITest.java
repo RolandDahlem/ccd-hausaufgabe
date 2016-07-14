@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
+import java.util.Arrays;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -40,6 +41,13 @@ public class WordCounterUITest {
 		assertThat(display.getLetzteAusgabe(), is("Number of Words: 4"));
 	}
 	
+	@Test
+	public void test_ob_lesen_von_datei_geht() throws Exception {
+		wordCounterUI.berechne(null, new String[]{"mytext.txt"});
+		assertThat(display.getLetzteAusgabe(), is("Number of Words: 4"));
+	}
+
+			
 	private BufferedReader erstelleReaderFuerString(String eingabe) throws UnsupportedEncodingException {
 		InputStream inputstream = new ByteArrayInputStream(eingabe.getBytes(Charset.forName("UTF-8")));
 		InputStreamReader reader = new InputStreamReader(inputstream, "UTF-8");
