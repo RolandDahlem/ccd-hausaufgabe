@@ -9,8 +9,13 @@ import java.util.function.Consumer;
 
 public class WordCounterUI {
 
-	private WordCounter wordCounter = new WordCounter();
+	private WordCounter wordCounter;
 	private Consumer<String> display;
+	
+	public WordCounterUI() {
+		wordCounter = new WordCounter();
+		wordCounter.setStoppwoerter(new StoppwortProvider().getStoppwoerter());
+	}
 	
 	public void setDisplay(Consumer<String> display) {
 		this.display = display;		

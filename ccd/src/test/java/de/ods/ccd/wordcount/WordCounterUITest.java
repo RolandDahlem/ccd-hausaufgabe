@@ -28,11 +28,18 @@ public class WordCounterUITest {
 	
 	@Test
 	public void test_ob_woerter_von_einem_reader_eine_korrekt_ausgabe_hervorbringen() throws Exception {
-		BufferedReader reader = erstelleReaderFuerString("Mary had a little lamb\n");
+		BufferedReader reader = erstelleReaderFuerString("Mary had little lamb\n");
 		wordCounterUI.berechne(reader);
-		assertThat(display.getLetzteAusgabe(), is("Number of Words: 5"));
+		assertThat(display.getLetzteAusgabe(), is("Number of Words: 4"));
 	}
 
+	@Test
+	public void test_ob_stoppwoerter_beachted_werden() throws Exception {
+		BufferedReader reader = erstelleReaderFuerString("Mary had a little lamb\n");
+		wordCounterUI.berechne(reader);
+		assertThat(display.getLetzteAusgabe(), is("Number of Words: 4"));
+	}
+	
 	private BufferedReader erstelleReaderFuerString(String eingabe) throws UnsupportedEncodingException {
 		InputStream inputstream = new ByteArrayInputStream(eingabe.getBytes(Charset.forName("UTF-8")));
 		InputStreamReader reader = new InputStreamReader(inputstream, "UTF-8");
