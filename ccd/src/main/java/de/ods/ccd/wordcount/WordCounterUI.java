@@ -26,10 +26,15 @@ public class WordCounterUI {
 		
 		display.accept("Enter your text: ");
 		
-		BufferedReader br=new BufferedReader(reader);
-		String line = br.readLine();
+		String line = holeInput(reader);
 		int wordCount = wordCounter.countWords(line);
 		display.accept("Number of Words: " + wordCount);
+	}
+
+	private String holeInput(Reader reader) throws IOException {
+		try(BufferedReader br=new BufferedReader(reader)){
+			return br.readLine();
+		}		
 	}
 
 }
