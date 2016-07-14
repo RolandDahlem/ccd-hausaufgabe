@@ -38,4 +38,9 @@ public class WordCounterTest {
 		assertThat(wordCounter.countWords("Mary had a little lamb"), is(4));
 	}	
 	
+	@Test
+	public void test_ob_uniq_woerter_beachtet_werden() {
+		assertThat(wordCounter.countUniqueWords("Hallo Welt, Hallo Stefan"), is(3));
+	}	
+	
 }

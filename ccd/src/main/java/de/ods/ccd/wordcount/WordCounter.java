@@ -1,6 +1,7 @@
 package de.ods.ccd.wordcount;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class WordCounter {
@@ -8,12 +9,15 @@ public class WordCounter {
 	private List<String> stoppwoerter = new ArrayList<>();
 
 	public int countWords(String satz) {
-		
 		List<String> woerter = parseWoerter(satz);
-		woerter.removeAll(stoppwoerter);
 		return woerter.size();
 	}
 
+	public int countUniqueWords(String satz) {
+		List<String> woerter = parseWoerter(satz);
+		return new HashSet<String>(woerter).size();
+	}
+	
 	private List<String> parseWoerter(String satz) {
 		List<String> woerter = new ArrayList<>();
 		
@@ -28,6 +32,8 @@ public class WordCounter {
 		}
 		
 		haengeWortAn(woerter, letztesWort);
+		
+		woerter.removeAll(stoppwoerter);
 		return woerter;
 	}
 
@@ -44,5 +50,7 @@ public class WordCounter {
 	public void setStoppwoerter(List<String> stoppwoerter) {
 		this.stoppwoerter = stoppwoerter;		
 	}
+
+
 
 }
