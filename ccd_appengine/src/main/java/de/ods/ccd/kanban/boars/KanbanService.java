@@ -15,11 +15,12 @@ import de.ods.ccd.kanban.contracts.Zettel;
 @Service
 public class KanbanService {
 
-	private Board board;
+	private DatenbankProvider datenbankProvider = new DatenbankProvider();
 	
 	@PostConstruct
 	public void init() {
-		board = erstelleBeispielboard();
+		Board board = erstelleBeispielboard();
+		datenbankProvider.speichere(board);
 	}
 	
 	private Board erstelleBeispielboard() {
@@ -35,15 +36,15 @@ public class KanbanService {
 	}
 
 	public Board getBoard() {
-		return board;
+		return datenbankProvider.getBoard();
 	}
 
 	public void neuerZettel() {
 
 		Zettel zettel = new Zettel(UUID.randomUUID());
-		zettel.setPosition(getBoard().getListeZettel().size());
+		zettel.setPosition(datenbankProvider.getBoard().getListeZettel().size());
 		
-		getBoard().getListeZettel().add(zettel);
+		datenbankProvider.getBoard().getListeZettel().add(zettel);
 	}
 	
 }
