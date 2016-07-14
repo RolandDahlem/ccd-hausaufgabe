@@ -30,14 +30,14 @@ public class WordCounterUITest {
 	@Test
 	public void test_ob_woerter_von_einem_reader_eine_korrekt_ausgabe_hervorbringen() throws Exception {
 		BufferedReader reader = erstelleReaderFuerString("Mary had little lamb\n");
-		wordCounterUI.berechne(reader);
+		wordCounterUI.berechne(reader, new String[0]);
 		assertThat(display.getLetzteAusgabe(), is("Number of Words: 4"));
 	}
 
 	@Test
 	public void test_ob_stoppwoerter_beachted_werden() throws Exception {
 		BufferedReader reader = erstelleReaderFuerString("Mary had a little lamb\n");
-		wordCounterUI.berechne(reader);
+		wordCounterUI.berechne(reader, new String[0]);
 		assertThat(display.getLetzteAusgabe(), is("Number of Words: 4"));
 	}
 	

@@ -27,11 +27,7 @@ public class WordCounterUI {
 		wordCounterUI.setDisplay(new KonsoleOutput());
 		wordCounterUI.berechne(new InputStreamReader(System.in), args);
 	}
-	
-	void berechne(Reader reader) throws IOException {
-		berechne(reader, new String[0]);
-	}
-	
+		
 	public void berechne(Reader reader, String[] filenames) throws IOException {
 		String satz = holeInput(reader, filenames);
 		int wordCount = wordCounter.countWords(satz);
