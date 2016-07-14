@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-class MockDisplay implements Consumer<String>{
+public class MockDisplay implements Consumer<String>{
 
 	private List<String> ausgabe = new ArrayList<>();
 	
