@@ -22,6 +22,13 @@ public class WordCounterTest {
 		assertThat(wordCounter.countWords("Mary had a     little lamb"), is(5));
 	}
 	
+	@Test
+	public void test_ob_woerter_bei_zahlen_als_trenner_gezaehlt_werden() {
+		WordCounter wordCounter = new WordCounter();
+		
+		assertThat(wordCounter.countWords("Mary had a7little lamb"), is(5));
+	}
+	
 	@Ignore("Anforderungen ändern? :) ")
 	@Test
 	public void test_ob_woerter_bei_umlauten_gezaehlt_werden() {
