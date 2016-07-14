@@ -43,4 +43,9 @@ public class WordCounterTest {
 		assertThat(wordCounter.countUniqueWords("Hallo Welt, Hallo Stefan"), is(3));
 	}	
 	
+	@Test
+	public void test_ob_uniq_woerter_case_sensitive_sind() {
+		assertThat(wordCounter.countUniqueWords("HALLO Welt, hallo Stefan"), is(4));
+	}	
+	
 }
