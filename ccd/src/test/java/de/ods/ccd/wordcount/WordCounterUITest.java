@@ -9,7 +9,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
-import java.util.Arrays;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -31,22 +30,38 @@ public class WordCounterUITest {
 	public void test_ob_woerter_von_einem_reader_eine_korrekt_ausgabe_hervorbringen() throws Exception {
 		BufferedReader reader = erstelleReaderFuerString("Mary had little lamb\n");
 		wordCounterUI.berechne(reader, new String[0]);
-		assertThat(display.getLetzteAusgabe(), is("Number of Words: 4"));
+		assertThat(getWordcount(), is("Number of Words: 4"));
 	}
 
 	@Test
 	public void test_ob_stoppwoerter_beachted_werden() throws Exception {
 		BufferedReader reader = erstelleReaderFuerString("Mary had a little lamb\n");
 		wordCounterUI.berechne(reader, new String[0]);
-		assertThat(display.getLetzteAusgabe(), is("Number of Words: 4"));
+		assertThat(getWordcount(), is("Number of Words: 4"));
 	}
 	
 	@Test
 	public void test_ob_lesen_von_datei_geht() throws Exception {
 		wordCounterUI.berechne(null, new String[]{"mytext.txt"});
-		assertThat(display.getLetzteAusgabe(), is("Number of Words: 4"));
+		assertThat(getWordcount(), is("Number of Words: 4"));
 	}
 
+	@Test
+	public void test_ob_unique_zusaetzlich_ausgegeben_wird() throws Exception {
+		BufferedReader reader = erstelleReaderFuerString("Hallo Welt, Hallo Stefan");
+		wordCounterUI.berechne(reader, new String[0]);
+		assertThat(getWordcount(), is("Number of Words: 4"));
+		assertThat(getUniqueWordcount(), is("\tunique: 3"));
+	}
+	
+	private String getWordcount() {
+		return display.getVorLetzteAusgabe();
+	}
+
+	private String getUniqueWordcount() {
+		return display.getLetzteAusgabe();
+	}
+	
 			
 	private BufferedReader erstelleReaderFuerString(String eingabe) throws UnsupportedEncodingException {
 		InputStream inputstream = new ByteArrayInputStream(eingabe.getBytes(Charset.forName("UTF-8")));

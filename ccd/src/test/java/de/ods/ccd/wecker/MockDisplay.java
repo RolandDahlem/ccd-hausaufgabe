@@ -17,5 +17,9 @@ public class MockDisplay implements Consumer<String>{
 	public String getLetzteAusgabe() {
 		return ausgabe.get(ausgabe.size() -1);
 	}
+
+	public String getVorLetzteAusgabe() {
+		return ausgabe.get(ausgabe.size() -2);
+	}
 	
 }

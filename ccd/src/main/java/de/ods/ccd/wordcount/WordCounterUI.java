@@ -30,8 +30,8 @@ public class WordCounterUI {
 		
 	public void berechne(Reader reader, String[] filenames) throws IOException {
 		String satz = holeInput(reader, filenames);
-		int wordCount = wordCounter.countWords(satz);
-		display.accept("Number of Words: " + wordCount);
+		display.accept("Number of Words: " + wordCounter.countWords(satz));
+		display.accept("\tunique: " + wordCounter.countUniqueWords(satz));
 	}
 
 	private String holeInput(Reader reader, String[] filenames) throws IOException {
