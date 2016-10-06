@@ -1,2 +1,3 @@
 language: java
-mvn -f ccd/pom.xml test
+test:
+  mvn -f ccd/pom.xml test
