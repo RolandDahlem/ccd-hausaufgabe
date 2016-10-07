@@ -8,3 +8,6 @@ deploy:
   provider: gae
   keyfile: ccd-hausaufgabe-aaa404686878.json
   project: ccd-hausaufgabe
+  verbosity: debug
+  config: ccd_appengine/src/main/webapp/WEB-INF/appengine-web.xml
+  
