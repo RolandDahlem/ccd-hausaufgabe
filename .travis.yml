@@ -1,5 +1,10 @@
 language: java
-jdk:
-  - oraclejdk8
+#jdk:
+#  - oraclejdk8
 script:
-  mvn -f ccd/pom.xml test
+  mvn --version
+  mvn -f ccd_gui/pom.xml install
+deploy:
+  provider: gae
+  keyfile: ccd-hausaufgabe-aaa404686878.json
+  project: ccd-hausaufgabe
